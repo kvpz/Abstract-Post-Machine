@@ -1,0 +1,133 @@
+Project 2 log
+
+5/30/15
+-Working on Load function.
+-Implemented all its output cases (successful opening of file with or without
+batch mode and loop if .pp file doesn't exist)
+
+5/31/15
+-After file is typed in, "Input string (To end *):" prints twice on same line.
+ch = std::cin.ignore() must be processing. Issue was resolved be clearing the
+-Load () functions works properly. Checked by outputting what I stored in List.
+-Attempting to get rid of all lines starting with '*' and the subset of
+the line beginning with '*'(not sure if that is necessary). Only the PM program
+and
+final '*' are left. Current issue: One of subsets isn't being deleted entirely.
+-Above problem fixed. All comments are removed in Load () and read into List
+object.
+
+6/1/15
+Working on Run()
+-VT102 Error after "Input string (To end *): VT102VT102VT102." Supposedly a
+Failure
+to open terminal for input (unix.com).
+-Testing hello_world.pp. String accepted only if '1' is input.
+-Front() is being called on an empty deque. Fixed with an if statement.
+-Tape content at rejection is printing all past rejections too.
+  Now it prints #&Hello World!Hello World! in every string rejected case
+    even without a successful string accepted before hand, along with incorrect
+      string in front of it. I does not print anything after string rejected
+        when 12/123.
+	-Tape is clearing fine.
+	-Biggest issue may be coming from for loop processing instructions
+	-Hello world now prints for 1, 12, 123, but prints infinite hello worlds
+	after
+	  an incorrect string. Match = 1 was in wrong place.
+	  -Strings are being rejected appropriately, but Tape contents at
+	  rejection is still
+	  printing 2 hello world! and 4 when it is any of the valid input
+	  sequences (it is
+	  print after '#').
+	  -program works. I had to move around much of what I had originally
+	  plus throw in
+	  some conditionals(if and while statements). Currently modifying for
+	  software engineering considerations.
+- program didn't run for batch test. The problem was that I was not
+clearing program_.
+	   ///////////////////////////////////////
+	   Input string (* to end): 1
+	   Machine stopped after 10000 iterations.
+	   Tape contents when stopped: 1#
+	                Last state: S
+
+Input string (* to end): 11
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11#
+             Last state: S
+
+Input string (* to end): 111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11#1
+             Last state: S
+
+Input string (* to end): 1111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 1111#
+             Last state: S
+
+Input string (* to end): 11111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11111#
+             Last state: S
+
+Input string (* to end): 111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11#1111
+             Last state: S
+
+Input string (* to end): 1111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 111#1111
+             Last state: S
+
+Input string (* to end): 11111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11111111#
+             Last state: S
+
+Input string (* to end): 111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11111111#1
+             Last state: S
+
+Input string (* to end): 1111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 1111111111#
+             Last state: S
+
+Input string (* to end): 11111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 1111111111#1
+             Last state: S
+
+Input string (* to end): 111111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 11111111#1111
+             Last state: S
+
+Input string (* to end): 1111111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 1111111111#111
+             Last state: S
+
+Input string (* to end): 1111111111111
+Machine stopped after 10000 iterations.
+Tape contents when stopped: 1111111111#111
+             Last state: S
+
+
+//////////////////////////////////////////
+Tape contents at halt: Hello World!
+
+Input string (* to end): 1
+      String accepted.
+      Tape contents at halt: Hello World!
+
+Input string (* to end): 12
+      String accepted.
+      Tape contents at halt: Hello World!
+
+Input string (* to end): 123
+      String accepted.
+      Tape contents at halt: Hello World!
+      
