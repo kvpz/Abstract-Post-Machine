@@ -19,8 +19,6 @@
   of 0 or more characters. The internal state is a value of the alphabet
   and a single character. Execution begins with the internal state initially
   set to S (for Start).
-
-A PM instruction file is appended with .pp.
 */
 
 #include "post.h"
@@ -82,12 +80,11 @@ bool PostMachine::Load(bool batch)
   while(!in1.eof())
   { 
     fsu::String s;
-    s.GetLine(in1); // reads entire line (instruction)
-    // store the index of the first occurences of '*' in [0,s.size)
-    size_t pos = s.Position('*',0); // 0 if '*' is first character in line
+    s.GetLine(in1);
+    size_t pos = s.Position('*',0);
     if(pos < s.Size()-1 && pos > 0 )
     {
-      fsu::String temp(pos,' '); // temp([size], [characters to fill with])
+      fsu::String temp(pos,' ');
       for(size_t j = 0; j < pos; j++)
         temp[j] = s[j];  
       program_.PushBack(temp);
@@ -103,10 +100,10 @@ bool PostMachine::Load(bool batch)
 
 void PostMachine::Run(bool batch)
 {
-  char ch; 
+  char ch;
 
   // simulation variables
-  bool finished, halt, crash, maxits_reached, match;  
+  bool finished, halt, crash, maxits_reached, match;  // booleans
   size_t its = 0;
   
   // now loop until '*' is received as (first character of) input
@@ -121,7 +118,7 @@ void PostMachine::Run(bool batch)
       std::cin.ignore();
     ch = std::cin.get();
     if (batch) std::cout.put(ch);
-    if (ch == '*') 
+    if (ch == '*')
     {
       ClearBuffer(std::cin);
       if (batch) std::cout.put('\n');
@@ -137,7 +134,7 @@ void PostMachine::Run(bool batch)
     tape_.Push('#');
 
     // run Post machine
-    state_ = 'S'; // state is some value of the alphabet S = 'Start'
+    state_ = 'S';
     finished = halt = crash = maxits_reached = 0;
     its = 0;
     do
@@ -174,11 +171,11 @@ void PostMachine::Run(bool batch)
     // report results
     if (halt)
     {
-      std::cout << "\tString accepted.\n" << std::endl;
-      //std::cout << std::endl << std::endl;
-      //std::cout << "String at halt: ";
-      //tape_.Display(std::cout);
-      //std::cout << "\n\n" << std::endl;
+      std::cout << "\nString accepted." << std::endl;
+      std::cout << std::endl << std::endl;
+      std::cout << "String at halt: ";
+      tape_.Display(std::cout);
+      std::cout << "\n\n" << std::endl;
     }
     else if (crash)
     {
