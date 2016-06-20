@@ -1,9 +1,10 @@
 
 # makefile for Post Machine
 
-home = /home/courses/cop4530p/LIB
-cpp  = $(home)/cpp
-tcpp = $(home)/tcpp
+#home = /home/courses/cop4530p/LIB
+home = ..\..\..\Code\ Files
+cpp  = $(home)\mycpp
+tcpp = $(home)\mytcpp
 proj = .
 
 incpath = -I$(proj) -I$(cpp) -I$(tcpp)
